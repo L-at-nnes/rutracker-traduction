@@ -14,7 +14,9 @@ Torrent titles, topic titles, and usernames are left alone — only the site's o
 ## Install
 
 1. Install a userscript manager — [Tampermonkey](https://www.tampermonkey.net/) or [Violentmonkey](https://violentmonkey.github.io/) both work.
-2. Open [`rutracker-en.user.js`](./rutracker-en.user.js), click **Raw**, and your userscript manager should offer to install it. If it doesn't, create a new script and paste the file's contents in.
+2. Click **[rutracker-en.user.js](https://raw.githubusercontent.com/L-at-nnes/rutracker-traduction/main/rutracker-en.user.js)** — your userscript manager should pick it up and prompt you to install it.
+
+The script auto-updates from this same URL, so once installed you'll get new translations and fixes without reinstalling.
 
 ## How it works
 

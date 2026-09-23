@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         RuTracker EN
 // @namespace    rutracker-en-translator
-// @version      1.0.0
+// @version      1.0.1
 // @description  Translates RuTracker's category tree, tracker search UI and profile pages from Russian to English
 // @author       L-at-nnes
 // @match        *://rutracker.org/forum/index.php*
@@ -9,6 +9,8 @@
 // @match        *://rutracker.org/forum/profile.php*
 // @run-at       document-end
 // @grant        none
+// @downloadURL  https://raw.githubusercontent.com/L-at-nnes/rutracker-traduction/main/rutracker-en.user.js
+// @updateURL    https://raw.githubusercontent.com/L-at-nnes/rutracker-traduction/main/rutracker-en.user.js
 // ==/UserScript==
 
 (function () {
