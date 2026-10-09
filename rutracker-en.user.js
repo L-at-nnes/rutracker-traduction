@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         RuTracker EN
 // @namespace    rutracker-en-translator
-// @version      1.0.4
+// @version      1.0.5
 // @description  Translates RuTracker's category tree, tracker search UI, torrent pages and profile pages from Russian to English
 // @author       L-at-nnes
 // @match        *://rutracker.org/forum/index.php*
@@ -10,6 +10,7 @@
 // @match        *://rutracker.org/forum/viewforum.php*
 // @match        *://rutracker.org/forum/viewtopic.php*
 // @match        *://rutracker.org/forum/search.php*
+// @match        *://rutracker.org/forum/privmsg.php*
 // @run-at       document-end
 // @grant        none
 // @downloadURL  https://raw.githubusercontent.com/L-at-nnes/rutracker-traduction/main/rutracker-en.user.js
@@ -2303,6 +2304,22 @@
   "Скачать .torrent": "Download .torrent",
   "Скачать по magnet-ссылке": "Download via magnet link",
   "Сообщений:": "Posts:",
+  "Скрыть категории": "Hide categories",
+  "другие раздачи...": "other torrents...",
+  "О проделанной работе": "About the work done",
+  "Приватные форумы": "Private forums",
+  "дн.": "days",
+  "сида не было": "no seeder for",
+  "Сиды": "Seeds",
+  "Личи": "Leechs",
+  "Для показа необходимо включить JavaScript": "JavaScript must be enabled to display this",
+  "Требует отключения блокировщика всплывающих окон! До 20-ти вкладок за один раз": "Requires disabling your pop-up blocker! Up to 20 tabs at once",
+  "От": "From",
+  "Дата": "Date",
+  "В этой папке нет сообщений": "No messages in this folder",
+  "Отметить / Переключить": "Select / Toggle",
+  "Удалить отмеченное": "Delete selected",
+  "Удалить все (очистить папку)": "Delete all (empty folder)",
   "закрыто": "closed",
   "закрыто правообладателем": "closed by rightsholder",
   "временная": "temporary"
@@ -2316,6 +2333,7 @@
     "Результатов поиска:": "Search results:",
     "Страницы:": "Pages:",
     "Непрочитанные - написанные после": "Unread - posted after",
+    "Срок хранения ЛС -": "PM retention period -",
     "Скачан:": "Downloaded:",
     ".torrent скачан:": ".torrent downloaded:",
   };
