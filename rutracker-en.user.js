@@ -1,13 +1,15 @@
 // ==UserScript==
 // @name         RuTracker EN
 // @namespace    rutracker-en-translator
-// @version      1.0.3
-// @description  Translates RuTracker's category tree, tracker search UI and profile pages from Russian to English
+// @version      1.0.4
+// @description  Translates RuTracker's category tree, tracker search UI, torrent pages and profile pages from Russian to English
 // @author       L-at-nnes
 // @match        *://rutracker.org/forum/index.php*
 // @match        *://rutracker.org/forum/tracker.php*
 // @match        *://rutracker.org/forum/profile.php*
 // @match        *://rutracker.org/forum/viewforum.php*
+// @match        *://rutracker.org/forum/viewtopic.php*
+// @match        *://rutracker.org/forum/search.php*
 // @run-at       document-end
 // @grant        none
 // @downloadURL  https://raw.githubusercontent.com/L-at-nnes/rutracker-traduction/main/rutracker-en.user.js
@@ -2212,7 +2214,101 @@
   "µTorrent и BitTorrent": "µTorrent and BitTorrent"
 };
 
-  const DICT = Object.assign({}, UI_DICT, CATEGORY_DICT, EXTRA_DICT);
+  // =========================================================================
+  // TOPIC_DICT — torrent page header/stats/download box, wishlist
+  // ("Future downloads") page, show-options panel and shared tooltips.
+  // =========================================================================
+  const TOPIC_DICT = {
+  "»» Выберите форум для перехода": "»» Select a forum to jump to",
+  "[Код]": "[Code]",
+  "[ЛС]": "[PM]",
+  "[Профиль]": "[Profile]",
+  "аватары": "avatars",
+  "В разделе": "In this section",
+  "В этой теме": "In this topic",
+  "Ваши сообщения в разделе": "Your posts in this section",
+  "Версия для печати": "Printable version",
+  "Вверх": "Up",
+  "Вернуться на главную": "Back to home",
+  "Вниз": "Down",
+  "Время добавления в список закачек": "Time added to the downloads list",
+  "Добавить в «Будущие закачки»": "Add to \"Future downloads\"",
+  "Добавлено": "Added",
+  "Для отключения автоудаления из списка удерживайте клавишу": "To disable auto-removal from the list, hold the",
+  "дней": "days",
+  "загружается...": "loading...",
+  "золотая": "gold",
+  "Информация": "Information",
+  "Как качать": "How to download",
+  "Как пополнить баланс Steam": "How to top up your Steam balance",
+  "картинки в сообщениях": "images in posts",
+  "картинки званий": "rank images",
+  "Мой IP": "My IP",
+  "Не показывать": "Do not show",
+  "не оформлено": "not formatted",
+  "не проверено": "not verified",
+  "Нет совпадений": "No matches",
+  "Несовпадающие файлы": "Non-matching files",
+  "недооформлено": "incomplete",
+  "некондиция": "substandard",
+  "нет описания": "no description",
+  "обычная": "regular",
+  "Опубликовать ссылку в Facebook": "Share link on Facebook",
+  "Опубликовать ссылку в LiveJournal": "Share link on LiveJournal",
+  "Опубликовать ссылку в Twitter": "Share link on Twitter",
+  "Опубликовать ссылку в Вконтакте": "Share link on VKontakte",
+  "Отметить/Снять отметку": "Select/Deselect",
+  "Покраснели раздачи?": "Torrents turned red?",
+  "повтор": "duplicate",
+  "подписи": "signatures",
+  "Показывать": "Show",
+  "поглощена": "absorbed",
+  "Последние поблагодарившие": "Latest thanks",
+  "Проверить ваш IP на этой раздаче": "Check your IP on this torrent",
+  "премодерация": "pre-moderation",
+  "проверено": "verified",
+  "при скачивании торрент-файла на странице раздачи.": "key while downloading the torrent file on the torrent page.",
+  "Развернуть": "Expand",
+  "Раздача": "Torrent",
+  "Россия": "Russia",
+  "Свернуть": "Collapse",
+  "Свернуть некорневые директории": "Collapse non-root directories",
+  "серебряная": "silver",
+  "Сказать \"Спасибо\"": "Say \"Thanks\"",
+  "смайлики": "smileys",
+  "Совпадающие по размеру файлы": "Files matching by size",
+  "Сравнение с раздачей:": "Comparison with torrent:",
+  "Сравнить с др. раздачей": "Compare with another torrent",
+  "Список файлов": "File list",
+  "спойлер открытым": "spoiler open",
+  "сомнительно": "doubtful",
+  "Срок хранения:": "Retention period:",
+  "Статистика раздачи": "Torrent statistics",
+  "Статус:": "Status:",
+  "сравниваемая": "compared",
+  "Темы": "Topics",
+  "Тип:": "Type:",
+  "Увел./умен. окно": "Enlarge/reduce window",
+  "Удалить": "Delete",
+  "Удалить выделенное из списка": "Delete selected from the list",
+  "удалить": "remove",
+  "У вас нет будущих закачек": "You have no future downloads",
+  "флаги": "flags",
+  "шт.": "pcs.",
+  "эта раздача": "this torrent",
+  "Переключить": "Toggle",
+  "Поиск на rutracker.org": "Search on rutracker.org",
+  "Имя ↓": "Name ↓",
+  "Размер ↓": "Size ↓",
+  "Скачать .torrent": "Download .torrent",
+  "Скачать по magnet-ссылке": "Download via magnet link",
+  "Сообщений:": "Posts:",
+  "закрыто": "closed",
+  "закрыто правообладателем": "closed by rightsholder",
+  "временная": "temporary"
+};
+
+  const DICT = Object.assign({}, UI_DICT, CATEGORY_DICT, EXTRA_DICT, TOPIC_DICT);
 
   // Prefixes for labels that are followed by dynamic data (counts, dates)
   // in the SAME text node, e.g. "Результатов поиска: 500".
@@ -2220,6 +2316,8 @@
     "Результатов поиска:": "Search results:",
     "Страницы:": "Pages:",
     "Непрочитанные - написанные после": "Unread - posted after",
+    "Скачан:": "Downloaded:",
+    ".torrent скачан:": ".torrent downloaded:",
   };
 
   // Russian 3-letter month abbreviations, used in dates like "23-Сен-26".
@@ -2247,14 +2345,23 @@
 
   const SKIP_SELECTOR = ".tLink, .torTopic, #topic-title, .postbody, .post_body, .msgtxt, .spoiler_text";
 
+  // "43 раза" / "1 раз" -> "43 times" / "1 time"
+  const TIMES_RE = /(\d+)\s+раз(?:а)?(?![а-яёА-ЯЁa-zA-Z])/g;
+  const AGO_RE = /(\s)назад(?![а-яёА-ЯЁa-zA-Z])/;
+
   function translateDuration(text) {
     let changed = false;
-    const result = text.replace(UNIT_RE, (_full, num, word) => {
+    let result = text.replace(UNIT_RE, (_full, num, word) => {
       changed = true;
       const base = UNIT_BASE[word];
       const n = parseInt(num, 10);
       return num + " " + base + (n === 1 ? "" : "s");
     });
+    result = result.replace(TIMES_RE, (_full, num) => {
+      changed = true;
+      return num + (parseInt(num, 10) === 1 ? " time" : " times");
+    });
+    if (changed) result = result.replace(AGO_RE, "$1ago");
     return changed ? result : null;
   }
 
@@ -2266,9 +2373,17 @@
       if (DICT.hasOwnProperty(rest)) return "|- " + DICT[rest];
     }
 
+    // Stats bar separators: "| Зарегистрирован:" / "|   .torrent скачан:"
+    const sep = trimmed.match(/^\|\s+(?=\S)/);
+    if (sep) {
+      const inner = lookup(trimmed.slice(sep[0].length));
+      if (inner !== null) return "| " + inner;
+    }
+
     for (const prefix in PREFIX_DICT) {
       if (trimmed.startsWith(prefix)) {
-        return PREFIX_DICT[prefix] + trimmed.slice(prefix.length);
+        const rest = trimmed.slice(prefix.length);
+        return PREFIX_DICT[prefix] + (translateDuration(rest) || rest);
       }
     }
 
