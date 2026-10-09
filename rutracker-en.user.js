@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         RuTracker EN
 // @namespace    rutracker-en-translator
-// @version      1.0.5
+// @version      1.0.6
 // @description  Translates RuTracker's category tree, tracker search UI, torrent pages and profile pages from Russian to English
 // @author       L-at-nnes
 // @match        *://rutracker.org/forum/index.php*
@@ -11,6 +11,7 @@
 // @match        *://rutracker.org/forum/viewtopic.php*
 // @match        *://rutracker.org/forum/search.php*
 // @match        *://rutracker.org/forum/privmsg.php*
+// @match        *://rutracker.org/forum/posting.php*
 // @run-at       document-end
 // @grant        none
 // @downloadURL  https://raw.githubusercontent.com/L-at-nnes/rutracker-traduction/main/rutracker-en.user.js
@@ -2320,6 +2321,61 @@
   "Отметить / Переключить": "Select / Toggle",
   "Удалить отмеченное": "Delete selected",
   "Удалить все (очистить папку)": "Delete all (empty folder)",
+  "Личное сообщение": "Private message",
+  "Отправить личное сообщение": "Send private message",
+  "Имя": "Name",
+  "Заголовок": "Subject",
+  "Сообщение": "Message",
+  "Дополнительные смайлики": "More smileys",
+  "Шрифт:": "Font:",
+  "Цвет шрифта:": "Font color:",
+  "Тёмно-красный": "Dark red",
+  "Коричневый": "Brown",
+  "Оранжевый": "Orange",
+  "Красный": "Red",
+  "Фиолетовый": "Violet",
+  "Зелёный": "Green",
+  "Тёмно-Зелёный": "Dark green",
+  "Серый": "Gray",
+  "Оливковый": "Olive",
+  "Синий": "Blue",
+  "Тёмно-синий": "Dark blue",
+  "Индиго": "Indigo",
+  "Тёмно-Голубой": "Dark cyan",
+  "Маленький": "Small",
+  "Обычный": "Normal",
+  "Большой": "Large",
+  "Огромный": "Huge",
+  "Выравнивание:": "Alignment:",
+  "По левому краю": "Left",
+  "По правому краю": "Right",
+  "По центру": "Center",
+  "По ширине": "Justify",
+  "Картинка:": "Image:",
+  "Слева": "Left",
+  "Справа": "Right",
+  "10% экрана": "10% of screen",
+  "По высоте строки": "Line height",
+  "Для отправки сообщений необходимo включить JavaScript": "JavaScript must be enabled to send messages",
+  "Новая строка": "New line",
+  "Отступ": "Indent",
+  "Форматированный текст": "Formatted text",
+  "Рамка": "Frame",
+  "В одну строку": "Single line",
+  "Жирный (Ctrl+B)": "Bold (Ctrl+B)",
+  "Курсив (Ctrl+I)": "Italic (Ctrl+I)",
+  "Подчеркнутый (Ctrl+U)": "Underline (Ctrl+U)",
+  "Перечеркнутый": "Strikethrough",
+  "Цитата (Ctrl+Q)": "Quote (Ctrl+Q)",
+  "Картинка (Ctrl+R)": "Image (Ctrl+R)",
+  "Ссылка (Ctrl+Y) Пример: [url=http://...]текст[/url]": "Link (Ctrl+Y) Example: [url=http://...]text[/url]",
+  "Список (Ctrl+L)": "List (Ctrl+L)",
+  "Элемент списка (Ctrl+0)": "List item (Ctrl+0)",
+  "Горизонтальная линия (Ctrl+8)": "Horizontal line (Ctrl+8)",
+  "Код (Ctrl+K)": "Code (Ctrl+K)",
+  "Спойлер (Ctrl+S)": "Spoiler (Ctrl+S)",
+  "Цитировать выделенный текст": "Quote selected text",
+  "Очистить окно ввода": "Clear input box",
   "закрыто": "closed",
   "закрыто правообладателем": "closed by rightsholder",
   "временная": "temporary"
