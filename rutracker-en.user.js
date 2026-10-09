@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         RuTracker EN
 // @namespace    rutracker-en-translator
-// @version      1.0.11
+// @version      1.0.12
 // @description  Translates RuTracker's category tree, tracker search UI, torrent pages and profile pages from Russian to English
 // @author       L-at-nnes
 // @match        *://rutracker.org/forum/index.php*
@@ -2396,6 +2396,8 @@
   "[Цитировать]": "[Quote]",
   "добавить": "add",
   "Перейти к цитируемому сообщению": "Go to quoted post",
+  "Ответить": "Reply",
+  "Недостаточно параметров для поиска": "Not enough search parameters",
   "закрыто": "closed",
   "закрыто правообладателем": "closed by rightsholder",
   "временная": "temporary"
@@ -2645,7 +2647,7 @@
   // characters in JS, so it does not fire correctly after them.
   const UNIT_RE = new RegExp("(\\d+)\\s+(" + Object.keys(UNIT_BASE).join("|") + ")\\.?(?![а-яёА-ЯЁa-zA-Z])", "g");
 
-  const SKIP_SELECTOR = ".tLink, .torTopic, #topic-title, .postbody, .post_body, .msgtxt, .spoiler_text, .postLink";
+  const SKIP_SELECTOR = ".tLink, .torTopic, #topic-title, .postbody, .post_body, .msgtxt, .spoiler_text, .postLink, .topictitle";
 
   // "43 раза" / "1 раз" -> "43 times" / "1 time"
   const TIMES_RE = /(\d+)\s+раз(?:а)?(?![а-яёА-ЯЁa-zA-Z])/g;
@@ -2654,10 +2656,12 @@
 
   function translateDuration(text) {
     let changed = false;
-    let result = text.replace(UNIT_RE, (_full, num, word) => {
-      changed = true;
+    let result = text.replace(UNIT_RE, (full, num, word) => {
       const base = UNIT_BASE[word];
       const n = parseInt(num, 10);
+      // "1905 года" is a calendar year in a title, not a duration
+      if (base === "year" && n > 150) return full;
+      changed = true;
       return num + " " + base + (n === 1 ? "" : "s");
     });
     result = result.replace(TIMES_RE, (_full, num) => {
