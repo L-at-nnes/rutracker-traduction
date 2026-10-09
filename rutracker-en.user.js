@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         RuTracker EN
 // @namespace    rutracker-en-translator
-// @version      1.0.12
+// @version      1.0.13
 // @description  Translates RuTracker's category tree, tracker search UI, torrent pages and profile pages from Russian to English
 // @author       L-at-nnes
 // @match        *://rutracker.org/forum/index.php*
@@ -2619,6 +2619,7 @@
     "Страницы:": "Pages:",
     "Непрочитанные - написанные после": "Unread - posted after",
     "Срок хранения ЛС -": "PM retention period -",
+    "Выделено из:": "Split from:",
     "Максимальный вес:": "Maximum size:",
     "Скачан:": "Downloaded:",
     ".torrent скачан:": ".torrent downloaded:",
@@ -2692,6 +2693,12 @@
       const head = trimmed.slice(0, -2);
       const key = Object.keys(DICT).find((k) => k.startsWith(head) && k !== trimmed);
       if (key) return DICT[key];
+    }
+    // Same for "Name..." in forum lists (longer minimum: usernames get cut too)
+    const ell = trimmed.match(/^(.{15,}?)(?:\.\.\.|…)$/);
+    if (ell) {
+      const key = Object.keys(DICT).find((k) => k.startsWith(ell[1]) && k.length > ell[1].length);
+      if (key) return DICT[key] + "...";
     }
 
     // Stats bar separators: "| Зарегистрирован:" / "|   .torrent скачан:"
