@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         RuTracker EN
 // @namespace    rutracker-en-translator
-// @version      1.0.9
+// @version      1.0.10
 // @description  Translates RuTracker's category tree, tracker search UI, torrent pages and profile pages from Russian to English
 // @author       L-at-nnes
 // @match        *://rutracker.org/forum/index.php*
@@ -2392,6 +2392,9 @@
   "Вернуться на страницу поиска": "Back to the search page",
   "Всего учтено + Сегодня": "Total counted + Today",
   "Список раздач, ушедших в архив из-за отсутствия сида": "List of torrents archived due to lack of seeders",
+  "[Цитировать]": "[Quote]",
+  "добавить": "add",
+  "Перейти к цитируемому сообщению": "Go to quoted post",
   "закрыто": "closed",
   "закрыто правообладателем": "closed by rightsholder",
   "временная": "temporary"
@@ -2518,7 +2521,7 @@
   // Russian relative-duration units ("1 год 2 месяца"), all declensions.
   const UNIT_BASE = {
     "секунда": "second", "секунды": "second", "секунд": "second",
-    "минута": "minute", "минуты": "minute", "минут": "minute",
+    "минута": "minute", "минуты": "minute", "минут": "minute", "мин": "minute",
     "час": "hour", "часа": "hour", "часов": "hour",
     "день": "day", "дня": "day", "дней": "day",
     "месяц": "month", "месяца": "month", "месяцев": "month",
@@ -2526,13 +2529,14 @@
   };
   // Lookahead instead of \b: \b treats Cyrillic letters as non-word
   // characters in JS, so it does not fire correctly after them.
-  const UNIT_RE = new RegExp("(\\d+)\\s+(" + Object.keys(UNIT_BASE).join("|") + ")(?![а-яёА-ЯЁa-zA-Z])", "g");
+  const UNIT_RE = new RegExp("(\\d+)\\s+(" + Object.keys(UNIT_BASE).join("|") + ")\\.?(?![а-яёА-ЯЁa-zA-Z])", "g");
 
-  const SKIP_SELECTOR = ".tLink, .torTopic, #topic-title, .postbody, .post_body, .msgtxt, .spoiler_text";
+  const SKIP_SELECTOR = ".tLink, .torTopic, #topic-title, .postbody, .post_body, .msgtxt, .spoiler_text, .postLink";
 
   // "43 раза" / "1 раз" -> "43 times" / "1 time"
   const TIMES_RE = /(\d+)\s+раз(?:а)?(?![а-яёА-ЯЁa-zA-Z])/g;
-  const AGO_RE = /(\s)назад(?![а-яёА-ЯЁa-zA-Z])/;
+  const INLINE_DATE_RE = new RegExp("(\\d{1,2}-)(" + Object.keys(MONTH_DICT).join("|") + ")(?=-\\d{2,4})", "g");
+  const AGO_RE =/(\s)назад(?![а-яёА-ЯЁa-zA-Z])/;
 
   function translateDuration(text) {
     let changed = false;
@@ -2546,8 +2550,13 @@
       changed = true;
       return num + (parseInt(num, 10) === 1 ? " time" : " times");
     });
-    if (changed) result = result.replace(AGO_RE, "$1ago");
-    return changed ? result : null;
+    if (!changed) return null;
+    result = result.replace(AGO_RE, "$1ago");
+    // "(спустя 2 minutes)" -> "(2 minutes later)"
+    result = result.replace(/спустя\s+([^)]+)/, "$1 later");
+    // "(3 years ago, ред. 22-Июл-23 08:57)" -> "... edited 22-Jul-23 08:57)"
+    result = result.replace(/ред\.\s*/, "edited ");
+    return result.replace(INLINE_DATE_RE, (_m, d, mon) => d + MONTH_DICT[mon]);
   }
 
   function lookup(trimmed) {
