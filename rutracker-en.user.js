@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         RuTracker EN
 // @namespace    rutracker-en-translator
-// @version      1.0.15
+// @version      1.0.16
 // @description  Translates RuTracker's category tree, tracker search UI, torrent pages and profile pages from Russian to English
 // @author       L-at-nnes
 // @match        *://rutracker.org/forum/index.php*
@@ -2399,6 +2399,12 @@
   "Ответить": "Reply",
   "Недостаточно параметров для поиска": "Not enough search parameters",
   "Возможной причиной отключения JavaScript может быть некорректная работа блокировщика рекламы": "A possible cause of JavaScript being disabled is an ad blocker not working correctly",
+  "Чемпионат Мира 2026": "World Cup 2026",
+  "Новогодний раздел": "New Year section",
+  "18 сентября - День Рождения Рутрекера": "September 18 - RuTracker Birthday",
+  "Красная книга раздач трекера": "Red Book of tracker torrents",
+  "Прием в группу Хранители": "Joining the Keepers group",
+  "Принимаем заявки на присвоение материалу статуса Антикварного": "Accepting applications for the Antiquarian status of materials",
   "Кому": "To",
   "Не найдено": "Not found",
   "В папке": "The",
@@ -2627,6 +2633,8 @@
     "Непрочитанные - написанные после": "Unread - posted after",
     "Срок хранения ЛС -": "PM retention period -",
     "Выделено из:": "Split from:",
+    "Группе Хранители -": "Keepers group -",
+    "У нас снова День Рождения - нам": "It's our birthday again - we are",
     "Максимальный вес:": "Maximum size:",
     "Скачан:": "Downloaded:",
     ".torrent скачан:": ".torrent downloaded:",
