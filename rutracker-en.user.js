@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         RuTracker EN
 // @namespace    rutracker-en-translator
-// @version      1.0.13
+// @version      1.0.14
 // @description  Translates RuTracker's category tree, tracker search UI, torrent pages and profile pages from Russian to English
 // @author       L-at-nnes
 // @match        *://rutracker.org/forum/index.php*
@@ -2398,6 +2398,12 @@
   "Перейти к цитируемому сообщению": "Go to quoted post",
   "Ответить": "Reply",
   "Недостаточно параметров для поиска": "Not enough search parameters",
+  "Кому": "To",
+  "Не найдено": "Not found",
+  "В папке": "The",
+  "находятся отправленные, но еще не прочитанные получателем сообщения. В": "folder contains messages that were sent but not yet read by the recipient. They move to",
+  "они попадают только после того, как получатель их прочтет. Сообщения, находящиеся в папке": "only after the recipient reads them. Messages in the",
+  ", можно отредактировать или удалить.": " folder can be edited or deleted.",
   "закрыто": "closed",
   "закрыто правообладателем": "closed by rightsholder",
   "временная": "temporary"
