@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         RuTracker EN
 // @namespace    rutracker-en-translator
-// @version      1.0.7
+// @version      1.0.8
 // @description  Translates RuTracker's category tree, tracker search UI, torrent pages and profile pages from Russian to English
 // @author       L-at-nnes
 // @match        *://rutracker.org/forum/index.php*
@@ -2388,6 +2388,10 @@
   "Музыка разных жанров": "Music of various genres",
   "Рок, металл": "Rock, metal",
   "Джазовая и блюзовая музыка": "Jazz & Blues Music",
+  "Подходящих тем или сообщений не найдено": "No matching topics or posts found",
+  "Вернуться на страницу поиска": "Back to the search page",
+  "Всего учтено + Сегодня": "Total counted + Today",
+  "Список раздач, ушедших в архив из-за отсутствия сида": "List of torrents archived due to lack of seeders",
   "закрыто": "closed",
   "закрыто правообладателем": "closed by rightsholder",
   "временная": "temporary"
