@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         RuTracker EN
 // @namespace    rutracker-en-translator
-// @version      1.0.6
+// @version      1.0.7
 // @description  Translates RuTracker's category tree, tracker search UI, torrent pages and profile pages from Russian to English
 // @author       L-at-nnes
 // @match        *://rutracker.org/forum/index.php*
@@ -2376,6 +2376,18 @@
   "Спойлер (Ctrl+S)": "Spoiler (Ctrl+S)",
   "Цитировать выделенный текст": "Quote selected text",
   "Очистить окно ввода": "Clear input box",
+  "Параметры запроса": "Query options",
+  "Поиск по автору": "Search by author",
+  "Показывать результаты как:": "Show results as:",
+  "Сообщения": "Posts",
+  "Новые с последнего посещения": "New since last visit",
+  "Как пользоваться поиском?": "How to use search?",
+  "Поиск только по трекеру": "Search tracker only",
+  "GENERATION.TORRENT - общий раздел": "GENERATION.TORRENT - general section",
+  "Авторская песня, Шансон": "Author's Songs, Chanson",
+  "Музыка разных жанров": "Music of various genres",
+  "Рок, металл": "Rock, metal",
+  "Джазовая и блюзовая музыка": "Jazz & Blues Music",
   "закрыто": "closed",
   "закрыто правообладателем": "closed by rightsholder",
   "временная": "temporary"
@@ -2442,9 +2454,18 @@
   function lookup(trimmed) {
     if (DICT.hasOwnProperty(trimmed)) return DICT[trimmed];
 
-    if (trimmed.startsWith("|- ")) {
-      const rest = trimmed.slice(3).trim();
-      if (DICT.hasOwnProperty(rest)) return "|- " + DICT[rest];
+    // Subforum options in selects: "|- Name" or "- Name"
+    const tree = trimmed.match(/^(\|?-)\s+(.+)$/);
+    if (tree) {
+      const inner = lookup(tree[2]);
+      if (inner !== null) return tree[1] + " " + inner;
+    }
+
+    // Long names are cut with ".." by the site; match them by prefix.
+    if (trimmed.endsWith("..") && trimmed.length >= 10) {
+      const head = trimmed.slice(0, -2);
+      const key = Object.keys(DICT).find((k) => k.startsWith(head) && k !== trimmed);
+      if (key) return DICT[key];
     }
 
     // Stats bar separators: "| Зарегистрирован:" / "|   .torrent скачан:"
