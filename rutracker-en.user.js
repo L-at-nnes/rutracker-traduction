@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         RuTracker EN
 // @namespace    rutracker-en-translator
-// @version      1.0.8
+// @version      1.0.9
 // @description  Translates RuTracker's category tree, tracker search UI, torrent pages and profile pages from Russian to English
 // @author       L-at-nnes
 // @match        *://rutracker.org/forum/index.php*
@@ -2397,7 +2397,101 @@
   "временная": "temporary"
 };
 
-  const DICT = Object.assign({}, UI_DICT, CATEGORY_DICT, EXTRA_DICT, TOPIC_DICT);
+  // =========================================================================
+  // PROFILE_DICT — profile edit form labels and the country list.
+  // =========================================================================
+  const PROFILE_DICT = {
+  "Редактирование профиля": "Edit profile",
+  "Регистрационная информация": "Registration information",
+  "Поля, отмеченные *, обязательны к заполнению": "Fields marked * are required",
+  "Имя: *": "Name: *",
+  "Текущий пароль: *": "Current password: *",
+  "Введите текущий пароль, если хотите изменить его или e-mail": "Enter your current password if you want to change it or your e-mail",
+  "Новый пароль: *": "New password: *",
+  "Введите новый пароль, если меняете текущий": "Enter a new password if you are changing the current one",
+  "(максимум:": "(maximum:",
+  "символов)": "characters)",
+  "Персональная информация": "Personal information",
+  "Интересы:": "Interests:",
+  "Личные настройки": "Personal settings",
+  "Подпись:": "Signature:",
+  "Макс. ШИРИНА×ВЫСОТА картинок: 750×80 px": "Max WIDTH×HEIGHT of images: 750×80 px",
+  "Макс. вес картинок: 150 KB": "Max image size: 150 KB",
+  "Макс. длина текста: 750 символов": "Max text length: 750 characters",
+  "Запрещены ссылки на сторонние ресурсы сети": "Links to third-party sites are prohibited",
+  "Как отключить показ подписей": "How to hide signatures",
+  "[предпросмотр]": "[preview]",
+  "очистить": "clear",
+  "Отключить получение и отправку ЛС:": "Disable receiving and sending PMs:",
+  "Да": "Yes",
+  "Раздачи": "Torrents",
+  "Включить учет отданного:": "Enable upload stats tracking:",
+  "Скрывать список активных раздач:": "Hide the list of active torrents:",
+  "Добавлять ретрекер в торрент-файлы:": "Add retracker to torrent files:",
+  "Добавлять название темы в имя скачиваемого торрент-файла:": "Add topic title to the downloaded torrent file name:",
+  "Отключить анимацию иконок:": "Disable icon animation:",
+  "Управление аватарой": "Avatar management",
+  "Изображение под вашим именем в сообщениях": "Image under your name in posts",
+  "Максимальные ШИРИНА и ВЫСОТА: 100x100 пикселов": "Maximum WIDTH and HEIGHT: 100x100 pixels",
+  "Максимальный вес: 30 KB": "Maximum size: 30 KB",
+  "Подробнее об ограничениях...": "More about the restrictions...",
+  "Загрузить аватару:": "Upload avatar:",
+  "Удалить изображение": "Delete image",
+  "Засекречен": "Undisclosed",
+  "GMT (время по гринвичу)": "GMT (Greenwich Mean Time)",
+  "GMT + 3 (Московское время)": "GMT + 3 (Moscow time)",
+  "» Выберите страну": "» Select country",
+  "Абхазия": "Abkhazia", "Австралия": "Australia", "Австрия": "Austria", "Азербайджан": "Azerbaijan",
+  "Албания": "Albania", "Алжир": "Algeria", "Ангола": "Angola", "Андорра": "Andorra",
+  "Антигуа и Барбуда": "Antigua and Barbuda", "Аргентина": "Argentina", "Армения": "Armenia",
+  "Афганистан": "Afghanistan", "Багамы": "Bahamas", "Бангладеш": "Bangladesh", "Барбадос": "Barbados",
+  "Бахрейн": "Bahrain", "Беларусь": "Belarus", "Белиз": "Belize", "Бельгия": "Belgium", "Бенин": "Benin",
+  "Болгария": "Bulgaria", "Боливия": "Bolivia", "Босния и Герцеговина": "Bosnia and Herzegovina",
+  "Ботсвана": "Botswana", "Бразилия": "Brazil", "Бруней": "Brunei", "Буркина-Фасо": "Burkina Faso",
+  "Бурунди": "Burundi", "Бутан": "Bhutan", "Вануату": "Vanuatu", "Великобритания": "United Kingdom",
+  "Венгрия": "Hungary", "Венесуэла": "Venezuela", "Вьетнам": "Vietnam", "Габон": "Gabon", "Гаити": "Haiti",
+  "Гайана": "Guyana", "Гамбия": "Gambia", "Гана": "Ghana", "Гватемала": "Guatemala", "Гвинея": "Guinea",
+  "Гвинея-Бисау": "Guinea-Bissau", "Гондурас": "Honduras", "Гонконг": "Hong Kong", "Гренада": "Grenada",
+  "Греция": "Greece", "Грузия": "Georgia", "Дания": "Denmark", "Джибути": "Djibouti", "Доминика": "Dominica",
+  "Доминиканская Республика": "Dominican Republic", "Египет": "Egypt", "ЕС": "EU", "Заир": "Zaire",
+  "Замбия": "Zambia", "Зимбабве": "Zimbabwe", "Израиль": "Israel", "Индия": "India", "Индонезия": "Indonesia",
+  "Иордания": "Jordan", "Ирак": "Iraq", "Иран": "Iran", "Ирландия": "Ireland", "Исландия": "Iceland",
+  "Йемен": "Yemen", "Кабо-Верде": "Cape Verde", "Казахстан": "Kazakhstan", "Камбоджа": "Cambodia",
+  "Камерун": "Cameroon", "Канада": "Canada", "Катар": "Qatar", "Кения": "Kenya", "Кипр": "Cyprus",
+  "Киргизия": "Kyrgyzstan", "Кирибати": "Kiribati", "Китай": "China", "Колумбия": "Colombia",
+  "Коморы": "Comoros", "Конго": "Congo", "Коста-Рика": "Costa Rica", "Кот д’Ивуар": "Côte d'Ivoire",
+  "Куба": "Cuba", "Кувейт": "Kuwait", "Лаос": "Laos", "Латвия": "Latvia", "Либерия": "Liberia",
+  "Ливан": "Lebanon", "Ливия": "Libya", "Литва": "Lithuania", "Лихтенштейн": "Liechtenstein",
+  "Люксембург": "Luxembourg", "Маврикий": "Mauritius", "Мавритания": "Mauritania", "Мадагаскар": "Madagascar",
+  "Макао": "Macau", "Македония": "Macedonia", "Малави": "Malawi", "Малайзия": "Malaysia", "Мали": "Mali",
+  "Мальдивы": "Maldives", "Мальта": "Malta", "Марокко": "Morocco", "Мексика": "Mexico",
+  "Микронезия": "Micronesia", "Мозамбик": "Mozambique", "Молдова": "Moldova", "Монако": "Monaco",
+  "Монголия": "Mongolia", "Мьянма": "Myanmar", "Намибия": "Namibia", "Науру": "Nauru", "Непал": "Nepal",
+  "Нигер": "Niger", "Нигерия": "Nigeria", "Нидерландские Антилы": "Netherlands Antilles",
+  "Нидерланды": "Netherlands", "Никарагуа": "Nicaragua", "Новая Зеландия": "New Zealand",
+  "Норвегия": "Norway", "ОАЭ": "UAE", "Оман": "Oman", "Пакистан": "Pakistan", "Панама": "Panama",
+  "Папуа - Новая Гвинея": "Papua New Guinea", "Парагвай": "Paraguay", "Перу": "Peru",
+  "ПМР": "Transnistria", "Польша": "Poland", "Португалия": "Portugal", "Пуэрто-Рико": "Puerto Rico",
+  "Руанда": "Rwanda", "Румыния": "Romania", "Самоа": "Samoa", "Сан-Марино": "San Marino",
+  "Сан-Томе и Принсипи": "Sao Tome and Principe", "Саудовская Аравия": "Saudi Arabia",
+  "Северная Корея": "North Korea", "Сейшелы": "Seychelles", "Сенегал": "Senegal",
+  "Сент-Винсент и Гренадины": "Saint Vincent and the Grenadines", "Сент-Китс и Невис": "Saint Kitts and Nevis",
+  "Сент-Люсия": "Saint Lucia", "Сербия": "Serbia", "Сингапур": "Singapore", "Сирия": "Syria",
+  "Словакия": "Slovakia", "Словения": "Slovenia", "Соломоновы Острова": "Solomon Islands", "Сомали": "Somalia",
+  "СССР": "USSR", "Судан": "Sudan", "Суринам": "Suriname", "США": "USA", "Сьерра-Леоне": "Sierra Leone",
+  "Таджикистан": "Tajikistan", "Таиланд": "Thailand", "Тайвань": "Taiwan", "Танзания": "Tanzania",
+  "Того": "Togo", "Тонга": "Tonga", "Тринидад и Тобаго": "Trinidad and Tobago", "Тувалу": "Tuvalu",
+  "Тунис": "Tunisia", "Туркмения": "Turkmenistan", "Турция": "Turkey", "Уганда": "Uganda",
+  "Узбекистан": "Uzbekistan", "Уругвай": "Uruguay", "Фиджи": "Fiji", "Филиппины": "Philippines",
+  "Финляндия": "Finland", "Хорватия": "Croatia", "ЦАР": "Central African Republic", "Чад": "Chad",
+  "Черногория": "Montenegro", "Чехия": "Czech Republic", "Чили": "Chile", "Швейцария": "Switzerland",
+  "Швеция": "Sweden", "Шри-Ланка": "Sri Lanka", "Эквадор": "Ecuador",
+  "Экваториальная Гвинея": "Equatorial Guinea", "Эль-Сальвадор": "El Salvador", "Эритрея": "Eritrea",
+  "Эстония": "Estonia", "Эфиопия": "Ethiopia", "ЮАР": "South Africa", "Югославия": "Yugoslavia",
+  "Южная Корея": "South Korea", "Южная Осетия": "South Ossetia", "Ямайка": "Jamaica", "Япония": "Japan"
+};
+
+  const DICT = Object.assign({}, UI_DICT, CATEGORY_DICT, EXTRA_DICT, TOPIC_DICT, PROFILE_DICT);
 
   // Prefixes for labels that are followed by dynamic data (counts, dates)
   // in the SAME text node, e.g. "Результатов поиска: 500".
@@ -2406,6 +2500,7 @@
     "Страницы:": "Pages:",
     "Непрочитанные - написанные после": "Unread - posted after",
     "Срок хранения ЛС -": "PM retention period -",
+    "Максимальный вес:": "Maximum size:",
     "Скачан:": "Downloaded:",
     ".torrent скачан:": ".torrent downloaded:",
   };
