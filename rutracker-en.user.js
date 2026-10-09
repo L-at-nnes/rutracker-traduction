@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         RuTracker EN
 // @namespace    rutracker-en-translator
-// @version      1.0.14
+// @version      1.0.15
 // @description  Translates RuTracker's category tree, tracker search UI, torrent pages and profile pages from Russian to English
 // @author       L-at-nnes
 // @match        *://rutracker.org/forum/index.php*
@@ -2398,6 +2398,7 @@
   "Перейти к цитируемому сообщению": "Go to quoted post",
   "Ответить": "Reply",
   "Недостаточно параметров для поиска": "Not enough search parameters",
+  "Возможной причиной отключения JavaScript может быть некорректная работа блокировщика рекламы": "A possible cause of JavaScript being disabled is an ad blocker not working correctly",
   "Кому": "To",
   "Не найдено": "Not found",
   "В папке": "The",
