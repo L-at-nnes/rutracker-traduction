@@ -1,6 +1,6 @@
 # RuTracker EN
 
-A userscript that translates [RuTracker](https://rutracker.org)'s interface from Russian to English: the homepage category tree, the tracker search page, and user profiles.
+A userscript that translates [RuTracker](https://rutracker.org)'s interface from Russian to English: the homepage category tree, forum pages, torrent pages, the tracker search page, user profiles, groups, private messages and more.
 
 Torrent titles, topic titles, and usernames are left alone — only the site's own UI and category names get translated.
 
@@ -9,6 +9,12 @@ Torrent titles, topic titles, and usernames are left alone — only the site's o
 - **Homepage (`index.php`)** — the full forum category tree, sidebar boxes, news, footer
 - **Tracker (`tracker.php`)** — the "go to category" tree, sort/filter options, results table
 - **Profiles (`profile.php`)** — role, rank, stats, contacts, restrictions; works on any user's profile
+- **Forum pages (`viewforum.php`)** — subforum names and descriptions, table headers
+- **Torrent pages (`viewtopic.php`)** — stats banner, download/magnet buttons, compare box, display options, post dates
+- **Forum search and wishlist (`search.php`)** — search form, "Future downloads" list
+- **Private messages (`privmsg.php`) and editor (`posting.php`)** — folders, compose form, formatting toolbar
+- **Groups (`groupcp.php`)** — group names
+- **Profile editing** — form labels and the country list
 - Dates (`23-Сен` → `23-Sep`) and relative durations (`1 год 2 месяца` → `1 year 2 months`)
 
 ## Install
@@ -20,10 +26,14 @@ The script auto-updates from this same URL, so once installed you'll get new tra
 
 ## How it works
 
-The script walks the page's text nodes and swaps any Russian string it recognizes for its English translation, using two dictionaries defined at the top of the file:
+The script walks the page's text nodes and swaps any Russian string it recognizes for its English translation, using dictionaries defined at the top of the file:
 
 - `UI_DICT` — navigation, search form, profile labels, footer (~270 entries)
 - `CATEGORY_DICT` — the full forum category tree (~1300 entries)
+- `EXTRA_DICT` — subforum names, descriptions and table UI of forum pages
+- `TOPIC_DICT` — torrent page, wishlist, messages, search and editor strings
+- `PROFILE_DICT` — profile edit form and country list
+- `GROUP_DICT` — user group names
 
 Matching is exact, on the whole trimmed string. Anything not in the dictionary is left untouched, which is why torrent and topic titles never need special-casing to stay in Russian.
 

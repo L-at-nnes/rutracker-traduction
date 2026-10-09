@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         RuTracker EN
 // @namespace    rutracker-en-translator
-// @version      1.0.10
+// @version      1.0.11
 // @description  Translates RuTracker's category tree, tracker search UI, torrent pages and profile pages from Russian to English
 // @author       L-at-nnes
 // @match        *://rutracker.org/forum/index.php*
@@ -12,6 +12,7 @@
 // @match        *://rutracker.org/forum/search.php*
 // @match        *://rutracker.org/forum/privmsg.php*
 // @match        *://rutracker.org/forum/posting.php*
+// @match        *://rutracker.org/forum/groupcp.php*
 // @run-at       document-end
 // @grant        none
 // @downloadURL  https://raw.githubusercontent.com/L-at-nnes/rutracker-traduction/main/rutracker-en.user.js
@@ -2494,7 +2495,120 @@
   "Южная Корея": "South Korea", "Южная Осетия": "South Ossetia", "Ямайка": "Jamaica", "Япония": "Japan"
 };
 
-  const DICT = Object.assign({}, UI_DICT, CATEGORY_DICT, EXTRA_DICT, TOPIC_DICT, PROFILE_DICT);
+  // =========================================================================
+  // GROUP_DICT — user group names on groupcp.php.
+  // =========================================================================
+  const GROUP_DICT = {
+  "Информация о членстве в группах": "Group membership information",
+  "Группы с закрытым членством": "Closed-membership groups",
+  "AVC-Видео": "AVC Video",
+  "RG Аудиокниги": "RG Audiobooks",
+  "RG Декламаторы": "RG Narrators",
+  "RG Документалисты": "RG Documentary makers",
+  "RG Зарубежные сериалы": "RG Foreign TV series",
+  "RG Консольщики": "RG Console releasers",
+  "RG Мультфильмы": "RG Cartoons",
+  "RG Полиглоты": "RG Polyglots",
+  "RG Русские сериалы": "RG Russian TV series",
+  "RG Торрент-Книги": "RG Torrent Books",
+  "VIP (Заслуженные)": "VIP (Distinguished)",
+  "VIP (Пользователь)": "VIP (User)",
+  "Артсовет": "Art Council",
+  "Доноры": "Donors",
+  "Заслуженные хранители": "Distinguished Keepers",
+  "Кандидаты в группу Хранители": "Keeper group candidates",
+  "Консультанты раздела \"Железа\"": "Hardware section consultants",
+  "Консультанты. Техпомощь": "Consultants. Tech support",
+  "Краудфандинг": "Crowdfunding",
+  "Лауреаты конкурсов": "Contest laureates",
+  "Лауреаты Музыкальных конкурсов": "Music contest laureates",
+  "Модераторы Alternative, Punk, Ind.": "Alternative, Punk, Ind. moderators",
+  "Модераторы Apple": "Apple moderators",
+  "Модераторы New Age, Relax, Meditative": "New Age, Relax, Meditative moderators",
+  "Модераторы Reggae, Ska, Dub": "Reggae, Ska, Dub moderators",
+  "Модераторы Авто и мото": "Auto & Moto moderators",
+  "Модераторы Азиатских Сериалов": "Asian TV Series moderators",
+  "Модераторы Аниме": "Anime moderators",
+  "Модераторы Арт-хауса": "Art House moderators",
+  "Модераторы Аудиокниг": "Audiobooks moderators",
+  "Модераторы блюза": "Blues moderators",
+  "Модераторы видео для консолей": "Console video moderators",
+  "Модераторы Видеоуроков": "Video tutorials moderators",
+  "Модераторы джаза": "Jazz moderators",
+  "Модераторы Документальных фильмов": "Documentaries moderators",
+  "Модераторы зарубежного металла": "Foreign metal moderators",
+  "Модераторы зарубежного рока": "Foreign rock moderators",
+  "Модераторы Зарубежных Сериалов": "Foreign TV Series moderators",
+  "Модераторы игр для Linux": "Linux games moderators",
+  "Модераторы игр для PC": "PC games moderators",
+  "Модераторы классической музыки": "Classical music moderators",
+  "Модераторы Клипартов, Футажей, Заготовок": "Clip art, Footage, Templates moderators",
+  "Модераторы Книг": "Books moderators",
+  "Модераторы Консолей": "Consoles moderators",
+  "Модераторы КПК": "PDA moderators",
+  "Модераторы Латинских Сериалов": "Latin American TV Series moderators",
+  "Модераторы Лейбл- и Сцен-паки. НСиР. AI": "Label & Scene packs, Unofficial compilations, AI moderators",
+  "Модераторы многоканальной музыки": "Multichannel music moderators",
+  "Модераторы музыкального видео": "Music video moderators",
+  "Модераторы музыкальных категорий": "Music categories moderators",
+  "Модераторы Мультфильмов": "Cartoons moderators",
+  "Модераторы Обучения иностранным языкам": "Foreign language learning moderators",
+  "Модераторы Общения": "Discussion moderators",
+  "Модераторы отечественного рока": "Domestic rock moderators",
+  "Модераторы популярной музыки": "Popular music moderators",
+  "Модераторы Программ": "Software moderators",
+  "Модераторы разделов оцифровок": "Digitization sections moderators",
+  "Модераторы Разного": "Miscellaneous moderators",
+  "Модераторы Русских Сериалов": "Russian TV Series moderators",
+  "Модераторы Рэп, Хип-Хоп, R'n'B": "Rap, Hip-Hop, R'n'B moderators",
+  "Модераторы саундтреков и караоке": "Soundtracks & karaoke moderators",
+  "Модераторы Спорта": "Sports moderators",
+  "Модераторы Фильмов": "Movies moderators",
+  "Модераторы Фольклора, Народной, Этники": "Folklore, Folk, Ethnic moderators",
+  "Модераторы шансона, авторской и военной": "Chanson, author's & military song moderators",
+  "Модераторы электронной музыки": "Electronic music moderators",
+  "Модераторы Юмора": "Humor moderators",
+  "Модераторы Юридического и Бизнес форумов": "Legal & Business forums moderators",
+  "Навечно в нашей памяти...": "Forever in our memory...",
+  "Организаторы Generation.torrent": "Generation.torrent organizers",
+  "Организаторы конкурсов": "Contest organizers",
+  "Победители конкурсов": "Contest winners",
+  "Победители конкурсов *": "Contest winners *",
+  "Победители музыкальных конкурсов": "Music contest winners",
+  "Победители спортивных конкурсов": "Sports contest winners",
+  "Победитель конкурса **": "Contest winner **",
+  "Победитель конкурса ***": "Contest winner ***",
+  "Помощники модераторов Apple": "Apple moderator assistants",
+  "Помощники модераторов аниме": "Anime moderator assistants",
+  "Помощники модераторов Док. фильмов": "Documentaries moderator assistants",
+  "Помощники модераторов ИнЯзов": "Foreign languages moderator assistants",
+  "Помощники модераторов Книг": "Books moderator assistants",
+  "Помощники модераторов Программ": "Software moderator assistants",
+  "Помощники Модераторов Сериалов": "TV Series moderator assistants",
+  "Помощники модераторов Спорта": "Sports moderator assistants",
+  "Помощники Модераторов Фильмов": "Movies moderator assistants",
+  "Призеры Спортивных конкурсов": "Sports contest prize winners",
+  "Редакторы новинок": "New releases editors",
+  "Редакторы раздела Заявки и координация": "Requests & Coordination section editors",
+  "Редакторы фильмографий": "Filmography editors",
+  "Редакторы шаблонов": "Template editors",
+  "Стажеры-модераторы": "Trainee moderators",
+  "Старожилы 1": "Old-timers 1",
+  "Старожилы 2": "Old-timers 2",
+  "Старожилы 3": "Old-timers 3",
+  "Старожилы 4": "Old-timers 4",
+  "Старожилы 5": "Old-timers 5",
+  "Старшие модераторы музыкальных категорий": "Senior music categories moderators",
+  "Техническая помощь": "Technical support",
+  "Техпомощь музыкальных категорий": "Music categories tech support",
+  "Техпомощь по \"железу\"": "Hardware tech support",
+  "Техпомощь раздела \"Кино, Видео и TV\"": "Movies, Video & TV section tech support",
+  "Фильмографы": "Filmographers",
+  "Флуд": "Flood",
+  "Хранители-кураторы": "Keeper curators"
+};
+
+  const DICT = Object.assign({}, UI_DICT, CATEGORY_DICT, EXTRA_DICT, TOPIC_DICT, PROFILE_DICT, GROUP_DICT);
 
   // Prefixes for labels that are followed by dynamic data (counts, dates)
   // in the SAME text node, e.g. "Результатов поиска: 500".
