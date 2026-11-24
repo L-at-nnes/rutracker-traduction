@@ -4,6 +4,12 @@ A userscript that translates [RuTracker](https://rutracker.org)'s interface from
 
 Torrent titles, topic titles, and usernames are left alone — only the site's own UI and category names get translated.
 
+<br>
+
+<p align="center">
+  <img src="https://jmcrafter26.github.io/badges/available/fmhy/cozy.svg" alt="FMHY">
+</p>
+
 ## What it translates
 
 - **Homepage (`index.php`)** — the full forum category tree, sidebar boxes, news, footer
